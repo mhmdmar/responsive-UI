@@ -1,24 +1,12 @@
-# tailor-assignment
+# Tailor Assignment
 
 ## Project setup
 ```
 npm install
+npm run serve/build 
 ```
 
-### Compiles and hot-reloads for development
+## Notes
 ```
-npm run serve
+I enjoyed working on this project, I hope you like it :) 
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
