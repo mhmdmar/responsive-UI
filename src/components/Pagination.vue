@@ -160,13 +160,12 @@
                         endRange--;
                     }
                 }
-                console.log(startRange, endRange);
+                this.startRange = startRange;
+                this.endRange = endRange;
                 const pages = [];
                 for (let i = startRange; i <= endRange; i++) {
                     pages.push(i);
                 }
-                this.startRange = startRange;
-                this.endRange = endRange;
                 return pages;
             },
             updatedSelectedPage(newVal) {
