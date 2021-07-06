@@ -1,13 +1,15 @@
 <template>
-    <div id="app">
+    <div id="app" class="md:overflow-hidden md:h-screen">
         <Topbar class="sm-hidden"></Topbar>
         <Separator></Separator>
-        <RecordsContainer :records="records"></RecordsContainer>
-        <div v-if="records.length > 0" class="sm-hidden">
-            <Pagination
-                class="md:flex md:content-center md:items-center"
-                :selectedPage.sync="selectedPage"
-            ></Pagination>
+        <div class="md:overflow-auto md:h-full">
+            <RecordsContainer :records="records"></RecordsContainer>
+            <div v-if="records.length > 0" class="sm-hidden md:h-36">
+                <Pagination
+                    class="md:flex md:content-center md:items-center"
+                    :selectedPage.sync="selectedPage"
+                ></Pagination>
+            </div>
         </div>
     </div>
 </template>
