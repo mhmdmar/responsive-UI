@@ -7,25 +7,20 @@
         >
             <!--    prev arrow      -->
             <div
-                class="h-8 w-8 ml-1 flex justify-center items-center border"
+                class="arrow-btn"
                 :class="[
                     prevArrowDisabled
-                        ? 'bg-gray-200 text-gray-500 cursor-default'
-                        : 'cursor-pointer'
+                        ? 'arrow-btn-disabled'
+                        : 'arrow-btn-enabled'
                 ]"
                 @click="prevArrowClicked"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="100%"
-                    height="100%"
-                    fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
+                    fill="none"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="feather feather-chevron-left w-4 h-4"
                 >
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
@@ -36,25 +31,8 @@
                 :key="pageNumber"
             >
                 <div
-                    class="
-                        g-white
-                        border-gray-300
-                        hover:bg-gray-50
-                        relative
-                        inline-flex
-                        items-center
-                        px-4
-                        py-2
-                        border
-                        text-sm
-                        font-medium
-                        cursor-pointer
-                    "
-                    :class="[
-                        selectedPage === pageNumber
-                            ? 'text-gray-500'
-                            : 'text-gray-300'
-                    ]"
+                    class="page-item"
+                    :class="{selected: selectedPage === pageNumber}"
                     @click="updatedSelectedPage(pageNumber)"
                 >
                     {{ pageNumber }}
@@ -62,25 +40,20 @@
             </div>
             <!--    next arrow      -->
             <div
-                class="h-8 w-8 ml-1 flex justify-center items-center border"
+                class="arrow-btn"
                 :class="[
                     nextArrowDisabled
-                        ? 'bg-gray-200 text-gray-500 cursor-default'
-                        : 'cursor-pointer'
+                        ? 'arrow-btn-disabled'
+                        : 'arrow-btn-enabled'
                 ]"
                 @click="nextArrowClicked"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="100%"
-                    height="100%"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="feather feather-chevron-right w-4 h-4"
                 >
                     <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
@@ -185,4 +158,24 @@
     };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+    .arrow-btn {
+        @apply h-8 w-8 ml-1 flex justify-center items-center border;
+        svg {
+            @apply w-4 h-4 stroke-2 stroke-current;
+        }
+    }
+    .arrow-btn-disabled {
+        @apply bg-gray-200 text-gray-400 cursor-default;
+    }
+    .arrow-btn-enabled {
+        @apply cursor-pointer;
+    }
+    .page-item {
+        @apply bg-white border-gray-300 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border
+        text-sm font-medium cursor-pointer text-gray-300;
+        &.selected {
+            @apply text-gray-500;
+        }
+    }
+</style>

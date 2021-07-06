@@ -1,23 +1,30 @@
 <template>
     <div id="app">
+        <Topbar class="sm-hidden"></Topbar>
+        <Separator></Separator>
         <RecordsContainer :records="records"></RecordsContainer>
-        <Pagination
-            v-if="records.length > 0"
-            class="hidden md:block md:flex md:content-center md:items-center"
-            :selectedPage.sync="selectedPage"
-        ></Pagination>
+        <div v-if="records.length > 0">
+            <Pagination
+                class="sm-hidden md:flex md:content-center md:items-center"
+                :selectedPage.sync="selectedPage"
+            ></Pagination>
+        </div>
     </div>
 </template>
 
 <script>
     import Pagination from "@/components/Pagination.vue";
     import RecordsContainer from "@/components/RecordsContainer.vue";
+    import Topbar from "@/components/Topbar.vue";
+    import Separator from "@/components/Separator.vue";
     import {tableService} from "@/services/tableService";
     export default {
         name: "App",
         components: {
             RecordsContainer,
-            Pagination
+            Pagination,
+            Topbar,
+            Separator
         },
         methods: {
             handleError(err) {
@@ -54,4 +61,5 @@
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
     }
+    @import "./assets/shared.scss.css";
 </style>
