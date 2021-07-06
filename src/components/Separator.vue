@@ -1,5 +1,5 @@
 <template>
-    <div class="h-14 md:h-10 bg-gray-800"></div>
+    <div class="h-14 md:h-10 bg-separator"></div>
 </template>
 
 <script>

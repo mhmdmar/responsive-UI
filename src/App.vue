@@ -3,9 +3,9 @@
         <Topbar class="sm-hidden"></Topbar>
         <Separator></Separator>
         <RecordsContainer :records="records"></RecordsContainer>
-        <div v-if="records.length > 0">
+        <div v-if="records.length > 0" class="sm-hidden">
             <Pagination
-                class="sm-hidden md:flex md:content-center md:items-center"
+                class="md:flex md:content-center md:items-center"
                 :selectedPage.sync="selectedPage"
             ></Pagination>
         </div>
