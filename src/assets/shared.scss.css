@@ -1,0 +1,3 @@
+.sm-hidden {
+    @apply hidden md:block;
+}

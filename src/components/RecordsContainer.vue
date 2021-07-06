@@ -1,6 +1,6 @@
 <template>
     <div
-        class="grid grid-cols-1 md:grid-cols-3 m-4 md:m-12 gap-y-4 md:gap-x-16"
+        class="grid grid-cols-1 md:grid-cols-3 m-6 md:m-12 gap-y-4 md:gap-x-16"
     >
         <div v-for="(card, index) in cards" :key="index">
             <Card
