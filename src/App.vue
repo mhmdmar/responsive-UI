@@ -3,11 +3,12 @@
         <Topbar class="sm-hidden"></Topbar>
         <Separator></Separator>
         <RecordsContainer :records="records"></RecordsContainer>
-        <Pagination
-            v-if="records.length >= 0"
-            class="sm-hidden md:flex md:content-center md:items-center"
-            :selectedPage.sync="selectedPage"
-        ></Pagination>
+        <div v-if="records.length > 0">
+            <Pagination
+                class="sm-hidden md:flex md:content-center md:items-center"
+                :selectedPage.sync="selectedPage"
+            ></Pagination>
+        </div>
     </div>
 </template>
 
