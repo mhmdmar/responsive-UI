@@ -80,13 +80,7 @@
             }
         },
         data() {
-            let startRange = this.selectedPage;
-            let endRange = startRange + this.availablePages - 1;
-            if (endRange > this.pagesNumber) {
-                endRange = this.pagesNumber;
-                startRange = endRange - this.availablePages + 1;
-                startRange = startRange <= 0 ? 1 : startRange;
-            }
+            const {startRange, endRange} = this.initializeBothRanges();
             return {
                 startRange,
                 endRange,
@@ -115,7 +109,10 @@
             }
         },
         methods: {
-            // get array of the size provided (availablePages) that contains numbers between right and left range
+            /*
+             adjust the start/end range depending on the currently selected page
+             also get an array of the size provided (availablePages) that contains numbers between right and left range
+             */
             getPagesToShow() {
                 let startRange = this.startRange;
                 let endRange = this.endRange;
@@ -140,6 +137,16 @@
                     pages.push(i);
                 }
                 return pages;
+            },
+            initializeBothRanges() {
+                let startRange = this.selectedPage;
+                let endRange = startRange + this.availablePages - 1;
+                if (endRange > this.pagesNumber) {
+                    endRange = this.pagesNumber;
+                    startRange = endRange - this.availablePages + 1;
+                    startRange = startRange <= 0 ? 1 : startRange;
+                }
+                return {startRange, endRange};
             },
             updatedSelectedPage(newVal) {
                 this.$emit("update:selectedPage", newVal);
