@@ -6,7 +6,7 @@
             <Card
                 :title="card.title"
                 :content="card.content"
-                :imageUrl="`https://dl.airtable.com/pQXlwEtaSu8uo9dYZKvQ_pexels-photo-261102.jpeg%3Fh%3D350%26auto%3Dcompress%26cs%3Dtinysrgb`"
+                :imageUrl="card.imageUrl"
             ></Card>
         </div>
     </div>
