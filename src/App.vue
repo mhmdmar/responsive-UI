@@ -1,40 +1,48 @@
 <template>
     <div id="app">
-        <Spinner :is-loading="isLoading"></Spinner>
-        <button @click="activate">Click me</button>
-        <Pagination></Pagination>
+        <RecordsContainer :records="records"></RecordsContainer>
+        <Pagination
+            v-if="records.length > 0"
+            class="hidden md:block md:flex md:content-center md:items-center"
+            :selectedPage.sync="selectedPage"
+        ></Pagination>
     </div>
 </template>
 
 <script>
-    import Spinner from "@/components/Spinner.vue";
-    import {mapMutations, mapGetters} from "vuex";
+    import Pagination from "@/components/Pagination.vue";
+    import RecordsContainer from "@/components/RecordsContainer.vue";
     import {tableService} from "@/services/tableService";
-    import Pagination from "@/components/Pagination";
     export default {
         name: "App",
         components: {
-            Pagination,
-            Spinner
+            RecordsContainer,
+            Pagination
         },
         methods: {
-            ...mapMutations(["setIsLoading"]),
-            activate() {
-                tableService
-                    .getTableItems()
-                    .then(response => {
-                        console.log(response);
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    })
-                    .finally(() => {
-                        this.setIsLoading(false);
-                    });
+            handleError(err) {
+                console.error(err);
             }
         },
-        computed: {
-            ...mapGetters(["isLoading"])
+        mounted() {
+            tableService
+                .getTableItems()
+                .then(response => {
+                    if (response.error) {
+                        this.handleError(response.error);
+                    } else {
+                        this.records = response.data;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        },
+        data() {
+            return {
+                selectedPage: 1,
+                records: []
+            };
         }
     };
 </script>
@@ -44,8 +52,6 @@
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
     }
 </style>
