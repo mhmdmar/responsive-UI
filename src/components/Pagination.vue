@@ -107,9 +107,16 @@
             }
         },
         data() {
+            let startRange = this.selectedPage;
+            let endRange = startRange + this.availablePages - 1;
+            if (endRange > this.pagesNumber) {
+                endRange = this.pagesNumber;
+                startRange = endRange - this.availablePages + 1;
+                startRange = startRange <= 0 ? 1 : startRange;
+            }
             return {
-                startRange: this.selectedPage,
-                endRange: this.selectedPage + this.availablePages - 1,
+                startRange,
+                endRange,
                 pages: []
             };
         },
@@ -155,7 +162,11 @@
                 }
                 this.startRange = startRange;
                 this.endRange = endRange;
-                return Array.from({length: len}, (_, i) => startRange + i);
+                const pages = [];
+                for (let i = startRange; i <= endRange; i++) {
+                    pages.push(i);
+                }
+                return pages;
             },
             updatedSelectedPage(newVal) {
                 this.$emit("update:selectedPage", newVal);

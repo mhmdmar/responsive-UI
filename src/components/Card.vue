@@ -4,7 +4,8 @@
             <img
                 class="object-fit h-48 w-full"
                 :src="imageUrl"
-                :alt="imageTitle"
+                @error="$event.target.src = 'imageNotFound.jpeg'"
+                alt=""
             />
         </div>
         <div class="px-3 pb-2">
@@ -35,10 +36,6 @@
                 default: ""
             },
             content: {
-                type: String,
-                default: ""
-            },
-            imageTitle: {
                 type: String,
                 default: ""
             },
