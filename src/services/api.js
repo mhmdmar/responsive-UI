@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const apiKey = "keyOw2loIpqsFxCW8";
+import apiKey from "./apiKey";
 const apiUri = `https://api.airtable.com/v0/apppWiSUDpifZ2BL5`;
 
 const api = axios.create({
